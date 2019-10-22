@@ -1,0 +1,72 @@
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/linearLayout1"
+    android:background="#ffeeeeee"
+    android:outlineSpotShadowColor="#ffeb1818"
+    android:outlineAmbientShadowColor="#ffe00808">
+    <TextView
+        android:text="Enter Your Idea Below: "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:gravity="center"
+        android:textSize="29dp"
+        android:textStyle="bold"
+        android:textColor="#ffff4081" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ideaText1"
+        android:layout_gravity="center"
+        android:textSize="23dp"
+        android:textStyle="italic"
+         />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textSize="25dp"
+        android:fontFamily="monospace"
+        android:textColorHighlight="@color/abc_background_cache_hint_selector_material_light"
+        />
+    <Button
+        android:text="Add"
+        android:layout_width="match_parent"
+        android:layout_height="47.7dp"
+        android:id="@+id/addButton"
+        android:layout_marginBottom="30dp"
+        android:background="#ffafaead"
+        android:typeface="normal"
+        android:textSize="15dp" />
+    <Button
+        android:text="Retrieve Random Idea"
+        android:layout_width="match_parent"
+        android:layout_height="50.0dp"
+        android:id="@+id/rollButton"
+        android:background="#ffafaead"
+        android:outlineAmbientShadowColor="#ffee1313"
+        android:outlineProvider="paddedBounds"
+        android:outlineSpotShadowColor="#ffaf2828"
+        android:textColor="#ff000000"
+        android:textSize="15dp"/>
+    <Button
+        android:text="Test"
+        android:layout_width="match_parent"
+        android:layout_height="50.0dp"
+        android:id="@+id/TestButton"
+        android:background="#ffafaead"
+        android:outlineAmbientShadowColor="#ffee1313"
+        android:outlineProvider="paddedBounds"
+        android:outlineSpotShadowColor="#ffaf2828"
+        android:textColor="#ff000000"
+        android:textSize="15dp"/>
+
+
+
+</LinearLayout>
