@@ -16,7 +16,7 @@ namespace IncomePlanner
         EditText workHoursPerDayEditText;
         EditText payRatePerHourEditText;
         EditText taxRateEditText;
-        EditText savingRateEditText;
+        EditText savingsRateEditText;
 
         TextView workSummaryTextView;
         TextView grossIncomeTextView;
@@ -27,7 +27,7 @@ namespace IncomePlanner
         Button btnCalculate;
         RelativeLayout resultLayout;
 
-
+        bool inputCalculated = false;
 
         void ConnectViews()
         {
@@ -37,7 +37,7 @@ namespace IncomePlanner
 
             //option 2 of connection elements in XAML to C# 
             payRatePerHourEditText = (EditText)FindViewById(Resource.Id.payRatePerHourEditText);
-            savingRateEditText = (EditText)FindViewById(Resource.Id.taxRateEditText);
+            savingsRateEditText = (EditText)FindViewById(Resource.Id.savingsRateEditText);
 
             //option 1 AGAIN (TEXTVIEW)
             workSummaryTextView = FindViewById<TextView>(Resource.Id.workSummaryTextView);
@@ -58,11 +58,20 @@ namespace IncomePlanner
 
         private void BtnCalculate_Click(object sender, System.EventArgs e)
         {
+
+            if (inputCalculated)
+            {
+                inputCalculated = false;
+                btnCalculate.Text = "Calculate";
+                ClearInput();
+                return;
+            }
+
             // Take Inputs from user
             double payRatePerHour = double.Parse(payRatePerHourEditText.Text);
             double workHoursPerDay = double.Parse(workHoursPerDayEditText.Text);
             double taxRate = double.Parse(taxRateEditText.Text);
-            double savingRate = double.Parse(savingRateEditText.Text);
+            double savingRate = double.Parse(savingsRateEditText.Text);
 
             double annualWorkHoursSummary = workHoursPerDay * 5 * 50; // 52 weeks in a year, leeway of 2 weeks off
             double annualIncome = payRatePerHour * workHoursPerDay * 5 * 50;
@@ -71,13 +80,16 @@ namespace IncomePlanner
             double spendableIncome = annualIncome - annualSaving - taxPayable;
 
             // Display Results of Calculations
-            grossIncomeTextView.Text = annualIncome.ToString() + " GBP"; ;
-            workSummaryTextView.Text = annualWorkHoursSummary.ToString() + " HRS";
-            taxPayableTextView.Text = taxPayable.ToString() + " GBP";
-            savingsTextView.Text = annualSaving.ToString() + " GBP";
-            spendingTextView.Text = spendableIncome.ToString() + " GBP";
+            grossIncomeTextView.Text = annualIncome.ToString("#,##") + " GBP"; 
+            workSummaryTextView.Text = annualWorkHoursSummary.ToString("#,##") + " HRS";
+            taxPayableTextView.Text = taxPayable.ToString("#,##") + " GBP";
+            savingsTextView.Text = annualSaving.ToString("#,##") + " GBP";
+            spendingTextView.Text = spendableIncome.ToString("#,##") + " GBP";
 
             resultLayout.Visibility = Android.Views.ViewStates.Visible;
+            inputCalculated = true;
+
+            btnCalculate.Text = "Clear Data";
         }
 
 
@@ -90,7 +102,16 @@ namespace IncomePlanner
             ConnectViews();
         }
 
-        
+        void ClearInput() 
+        {
+            payRatePerHourEditText.Text = "";
+            workHoursPerDayEditText.Text = "";
+            taxRateEditText.Text = "";
+            savingsRateEditText.Text = "";
+
+            resultLayout.Visibility = Android.Views.ViewStates.Invisible;
+        }
+
 
 
 
